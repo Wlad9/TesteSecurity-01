@@ -14,11 +14,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authority;
-    @ManyToMany
-    @JoinTable(name = "tb_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
     public Role() {
     }
 
@@ -53,15 +48,5 @@ public class Role {
     public int hashCode() {
         return Objects.hash(authority);
     }
-    public void addRole(Role role){
-        roles.add(role);
-    }
-    public boolean hasRole(String roleName){
-        for(Role role: roles){
-            if(role.getAuthority().equals(roleName)){
-                return true;
-            }
-        }
-        return  false;
-    }
+
 }
